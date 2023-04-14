@@ -2,7 +2,7 @@
 
 A napari plugin for [MEDIAR: Harmony of Data-Centric and Model-Centric for Multi-Modality Microscopy](https://arxiv.org/abs/2212.03465)
 
-
+![mediar-napari-plugin](imgs/napari_cellseg.gif)
 ----------------------------------
 
 This [napari](https://github.com/napari/napari) plugin was generated with [Cookiecutter](https://github.com/audreyr/cookiecutter) using [@napari]'s [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin) template. Most of the UI design and implemenation is following the codes of [cellpose-napari](https://github.com/MouseLand/cellpose-napari/) [cellseg_sribd_napari](https://github.com/Lewislou/cellseg_sribd_napari).
@@ -50,12 +50,9 @@ We will soon modify the code for using our weights easily
 napari -w mediar
 ```
 
-
-
-## Source codes and training
-The source codes of cellseg-sribd model and the training process are in [cellseg-sribd](https://github.com/Lewislou/cellseg-sribd/).
+You can also test with the sample image in imgs directory
 
 ## License
 
-Distributed under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause) license,"cellseg-sribd" is free and open source software
+Distributed under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause) license,"mediar-napari" is free and open source software
 
