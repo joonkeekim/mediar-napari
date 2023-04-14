@@ -1,0 +1,2 @@
+[napari.manifest]
+mediar = mediar:napari.yaml

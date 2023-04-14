@@ -1,0 +1,24 @@
+name: mediar
+schema_version: 0.1.0
+contributions:
+  commands:
+    - id: mediar.widget_wrapper
+      python_name: mediar._dock_widget:widget_wrapper
+      title: Create cellseg
+    - id: mediar.data.rgb_3D
+      title: Generate RGB 3D sample
+      python_name: mediar._sample_data:rgb_3D.tif
+    - id: mediar.data.rgb_2D
+      title: Generate RGB 2D sample
+      python_name: mediar._sample_data:rgb_2D.png
+  sample_data:
+    - display_name: Cells (3D+2Ch)
+      key: rgb_3D
+      command: mediar.data.rgb_3D
+    - display_name: Cells 2D
+      key: rgb_2D
+      command: mediar.data.rgb_2D
+  widgets:
+    - command: mediar.widget_wrapper
+      display_name: cellseg
+

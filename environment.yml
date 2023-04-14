@@ -1,0 +1,24 @@
+name: mediar
+dependencies:
+  - pip:
+    - gputools==0.2.13
+    - h5py==3.7.0
+    - huggingface-hub==0.10.1
+    - imagecodecs
+    - imageio==2.22.2
+    - torch>=1.6
+    - monai==1.0.0
+    - numpy
+    - tqdm
+    - opencv-python==4.6.0.66
+    - tifffile
+    - napari
+    - scipy==1.9.2
+    - scikit-image==0.19.3
+    - stardist==0.8.3
+    - timm==0.6.11
+    - torch==1.12.1
+    - torchaudio==0.12.1
+    - torchvision==0.13.1
+    - tqdm==4.64.1
+    - Pillow==9.2.0
