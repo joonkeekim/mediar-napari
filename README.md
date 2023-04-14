@@ -17,7 +17,6 @@ https://napari.org/stable/plugins/index.html
 
 ## Installation
 
-You can install `mediar` via following commands:
 ```shell
 conda create -y -n mediar-napari -c conda-forge python=3.8
 conda activate mediar-napari
@@ -28,18 +27,28 @@ pip install -e .
 ```
 ## Weights
 
-You can download our trained model **main_model.pth** and **sub_model.pth** at [google drive](https://drive.google.com/drive/folders/1nDNtnnx3itkfe6_pLEiuoKz9i3hCtLjF?hl=ko)
+You can download our trained model `main_model.pth` and `sub_model.pth` at [google drive](https://drive.google.com/drive/folders/1nDNtnnx3itkfe6_pLEiuoKz9i3hCtLjF?hl=ko)
 
-Them, locate these files under weights/
+Then, locate these files as below
 
+```
+  mediar-napari
+  ├── imgs
+  ├── segmentation_models_pytorch
+  ├── src
+  ├── weights
+  │   ├── main_model.pth
+  │   └── sub_model.pth
+  └── ...
+```
+
+We will soon modify the code for using our weights easily
 
 ## Running the software
 
 ```shell
 napari -w mediar
 ```
-
-There is sample data in the [imgs], or get started with your own images!
 
 
 
