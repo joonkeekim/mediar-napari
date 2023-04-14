@@ -1123,12 +1123,10 @@ def visualize_instance_seg_mask(mask):
 
 def predict(img):
     # Dataset parameters
-    ### for huggingface space
-    print(os.getcwd())
-    device = "cuda:0"
-    model_path = "./mediar_napari/weights/main_model.pth"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model_path = "./weights/main_model.pth"
     
-    model_path2 = "./mediar_napari/weights/sub_model.pth"
+    model_path2 = "./weights/sub_model.pth"
     ###
     # model = torch.load(model_path, map_location=device)
     model = SegformerGH(
