@@ -131,7 +131,7 @@ def pred_transforms(img):
         img = np.repeat(np.expand_dims(img, axis=-1), 3, axis=-1)
     elif len(img.shape) == 3 and img.shape[-1] > 3:
         img = img[:, :, :3]
-    # import pdb; pdb.set_trace()
+
     # img = img.astype(np.float32)
     # img = _normalize(img)
     # img = np.moveaxis(img, -1, 0) 
