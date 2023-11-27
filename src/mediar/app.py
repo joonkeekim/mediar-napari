@@ -127,14 +127,22 @@ def pred_transforms(img):
     #     else io_imread(filename)
     # )
 
-    # if len(img.shape) == 2:
-    #     img = np.repeat(np.expand_dims(img, axis=-1), 3, axis=-1)
-    # elif len(img.shape) == 3 and img.shape[-1] > 3:
-    #     img = img[:, :, :3]
+    if len(img.shape) == 2:
+        img = np.repeat(np.expand_dims(img, axis=-1), 3, axis=-1)
+    elif len(img.shape) == 3 and img.shape[-1] > 3:
+        img = img[:, :, :3]
+    # import pdb; pdb.set_trace()
+    # img = img.astype(np.float32)
+    # img = _normalize(img)
+    # img = np.moveaxis(img, -1, 0) 
+    pre_img_data = np.zeros(img.shape, dtype=np.uint8)
+    for i in range(img.shape[-1]):
+        img_channel_i = img[:, :, i]
 
-    img = img.astype(np.float32)
-    img = _normalize(img)
-    img = np.moveaxis(img, -1, 0)
+        if len(img_channel_i[np.nonzero(img_channel_i)]) > 0:
+            pre_img_data[:, :, i] = _normalize(img_channel_i)
+    img = np.moveaxis(pre_img_data, -1, 0)
+    
     img = (img - img.min()) / (img.max() - img.min())
 
     return torch.FloatTensor(img).unsqueeze(0)
@@ -175,7 +183,6 @@ class SegformerGH(MAnet):
     def forward(self, x):
         """Sequentially pass `x` trough model`s encoder, decoder and heads"""
         self.check_input_shape(x)
-
         features = self.encoder(x)
         decoder_output = self.decoder(*features)
 
@@ -1160,7 +1167,7 @@ def predict(img):
             512,
             4,
             model,
-            padding_mode="reflect",
+            padding_mode="constant",
             mode="gaussian",
             overlap=overlap,
             device="cpu",
@@ -1178,7 +1185,7 @@ def predict(img):
                 512,
                 4,
                 model,
-                padding_mode="reflect",
+                padding_mode="constant",
                 mode="gaussian",
                 overlap=overlap,
                 device="cpu",
@@ -1199,7 +1206,7 @@ def predict(img):
                 512,
                 4,
                 model,
-                padding_mode="reflect",
+                padding_mode="constant",
                 mode="gaussian",
                 overlap=overlap,
                 device="cpu",
@@ -1223,7 +1230,7 @@ def predict(img):
                 512,
                 4,
                 model,
-                padding_mode="reflect",
+                padding_mode="constant",
                 mode="gaussian",
                 overlap=overlap,
                 device="cpu",
@@ -1237,7 +1244,7 @@ def predict(img):
                 512,
                 4,
                 model,
-                padding_mode="reflect",
+                padding_mode="constant",
                 mode="gaussian",
                 overlap=overlap,
                 device="cpu",
