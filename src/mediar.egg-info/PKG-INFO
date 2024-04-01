@@ -19,18 +19,28 @@ Classifier: Programming Language :: Python :: 3.10
 Classifier: Topic :: Scientific/Engineering :: Image Processing
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-Provides-Extra: testing
 License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: magicgui
+Requires-Dist: qtpy
+Requires-Dist: tifffile
+Requires-Dist: scikit-image
+Provides-Extra: testing
+Requires-Dist: tox; extra == "testing"
+Requires-Dist: pytest; extra == "testing"
+Requires-Dist: pytest-cov; extra == "testing"
+Requires-Dist: pytest-qt; extra == "testing"
+Requires-Dist: napari; extra == "testing"
+Requires-Dist: pyqt5; extra == "testing"
 
-# mediar_napari
+# MEDIAR napari plugin
 
-A napari plugin for [Multi-stream Cell Segmentation with Low-level Cues for Multi-modality Images](https://openreview.net/forum?id=G24BybwKe9) - an anatomical segmentation tool for multi-modal cell images
+A napari plugin for [MEDIAR: Harmony of Data-Centric and Model-Centric for Multi-Modality Microscopy](https://arxiv.org/abs/2212.03465)
 
-![cellseg-napari_plugin](imgs/mediar_napari.gif)
-
+![mediar-napari-plugin](imgs/napari_cellseg.gif)
 ----------------------------------
 
-This [napari](https://github.com/napari/napari) plugin was generated with [Cookiecutter](https://github.com/audreyr/cookiecutter) using [@napari]'s [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin) template. Most of the UI design is following the codes of [cellpose-napari](https://github.com/MouseLand/cellpose-napari/).
+This [napari](https://github.com/napari/napari) plugin was generated with [Cookiecutter](https://github.com/audreyr/cookiecutter) using [@napari]'s [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin) template. Most of the UI design and implemenation is following the codes of [cellpose-napari](https://github.com/MouseLand/cellpose-napari/) [cellseg_sribd_napari](https://github.com/Lewislou/cellseg_sribd_napari).
 
 <!--
 Don't miss the full getting started guide to set up your new package:
@@ -42,16 +52,32 @@ https://napari.org/stable/plugins/index.html
 
 ## Installation
 
-You can install `mediar` via following commands:
 ```shell
-conda create -y -n napari-env -c conda-forge python=3.9
-conda activate napari-env
+conda create -y -n mediar-napari -c conda-forge python=3.8
+conda activate mediar-napari
 pip install "napari[all]"
-cd mediar_napari
+cd mediar-napari
 pip install -r requirements.txt
 pip install -e .
 ```
+## Weights
 
+You can download our trained model `main_model.pth` and `sub_model.pth` at [google drive](https://drive.google.com/drive/folders/1nDNtnnx3itkfe6_pLEiuoKz9i3hCtLjF?hl=ko)
+
+Then, locate these files as below
+
+```
+  mediar-napari
+  ├── imgs
+  ├── segmentation_models_pytorch
+  ├── src
+  ├── weights
+  │   ├── main_model.pth
+  │   └── sub_model.pth
+  └── ...
+```
+
+We will soon modify the code for using our weights easily
 
 ## Running the software
 
@@ -59,36 +85,9 @@ pip install -e .
 napari -w mediar
 ```
 
-There is sample data in the [imgs], or get started with your own images!
-
-
-
-## Source codes and training
-The source codes of mediar model and the training process are in [mediar](https://github.com/Lewislou/mediar/).
+You can also test with the sample image in imgs directory
 
 ## License
 
-Distributed under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause) license,"mediar" is free and open source software
+Distributed under the terms of the [BSD-3](http://opensource.org/licenses/BSD-3-Clause) license,"mediar-napari" is free and open source software
 
-## Dependencies
-
-mediar relies on the following excellent packages (which are automatically installed with conda/pip if missing):
-- [napari](https://napari.org)
-- [magicgui](https://napari.org/magicgui/)
-
-## Issues
-
-If you encounter any problems, please [file an issue] along with a detailed description.
-
-
-## Citation
-If any part of this code is used, please acknowledge it appropriately and cite the paper:
-```bibtex
-@misc{
-lou2022multistream,
-title={Multi-stream Cell Segmentation with Low-level Cues for Multi-modality Images},
-author={WEI LOU and Xinyi Yu and Chenyu Liu and Xiang Wan and Guanbin Li and Siqi Liu and Haofeng Li},
-year={2022},
-url={https://openreview.net/forum?id=G24BybwKe9}
-}
-```
